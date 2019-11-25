@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+Hassan Tfaili
+Tfai0004
+Sunday November 24th
+-->
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>MAD9014 Hybrid 8</title>
+        <style>
+            header {
+                background-color: hsla(0, 0%, 20%, 1);
+                color: hsla(0, 0%, 80%, 1);
+            }
+
+            header > * {
+                display: inline-block;
+                width: 33.33%;
+            }
+
+            .character {
+                display: inline-block;
+                border-style: groove;
+                width: 20%;
+                height: 120px;
+            }
+
+            .character > #charId {
+                font-size: 75%;
+                opacity: 75%;
+            }
+
+            .character > #charName {
+                font-style: italic;
+            }
+        </style>
+        <script>
+            let print = console.log;
+
+            let MY_BOX_ID = "box_089956cbd93379da18f8";
+
+            let process = (promise) => {
+                promise.then( dataArray => {
+                    print(dataArray);
+
+                    let data_info = dataArray[0];
+                    let data = data_info.data;
+
+                    let title = document.createElement("h1");
+                    title.id = "title";
+                    title.textContent = data.title;
+
+                    let date = document.createElement("h5");
+                    date.id = "date";
+                    date.textContent = Date(data_info._createdOn).toString();
+
+                    let id = document.createElement("h5");
+                    id.id = "id";
+                    id.textContent = data_info._id;
+
+                    let header = document.getElementById("header");
+                    header.appendChild(title);
+                    header.appendChild(date);
+                    header.appendChild(id);
+
+                    let main = document.getElementById("main");
+                    data.cast.forEach((char, index) => {
+                        let character = document.createElement("div");
+                        character.id = `character${index}`;
+                        character.classList.add("character");
+
+                        let charId = document.createElement("p");
+                        charId.id = "charId";
+                        charId.textContent = `ID: ${char.id}`;
+
+                        let charInfo1 = document.createElement("p");
+                        let charInfo2 = document.createElement("p");
+                        charInfo1.id = "actorName";
+                        charInfo1.textContent = `Actor: ${char.actor}`;
+                        charInfo2.id = "charName";
+                        charInfo2.textContent = `Character: ${char.character}`;
+
+                        character.appendChild(charId);
+                        character.appendChild(charInfo1);
+                        character.appendChild(charInfo2);
+
+                        main.appendChild(character);
+                    });
+                });
+            };
+
+            let data1 = fetch(`https://jsonbox.io/${MY_BOX_ID}`);
+
+            let start = () => {
+                Promise.all([data1])
+                .then( results => {
+                    process( results[0].json() );
+                })
+                .catch( error => {
+                    print( error.message );
+                });
+            }
+
+            window.addEventListener("DOMContentLoaded", start);
+        </script>
+    </head>
+    <body>
+        <header id="header">
+        </header>
+        <main id="main">
+        </main>
+    </body>
+</html>

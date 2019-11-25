@@ -1,0 +1,37 @@
+{
+    "data" : {
+        "title": "Breaking Bad",
+        "cast": [
+            {
+                "id" : 21,
+                "actor" : "Bryan Cranston",
+                "character": "Walter White"
+            },
+            {
+                "id" : 22,
+                "actor" : "Anna Gunn",
+                "character": "Skyler White"
+            },
+            {
+                "id" : 23,
+                "actor" : "Aaron Paul",
+                "character": "Jesse Pinkman"
+            },
+            {
+                "id" : 24,
+                "actor" : "Dean Norris",
+                "character": "Hank Schrader"
+            },
+            {
+                "id" : 25,
+                "actor" : "Betsy Brandt",
+                "character": "Marie Schrader"
+            },
+            {
+                "id" : 26,
+                "actor" : "RJ Mitte",
+                "character": "Walter White, Jr."
+            }
+        ]
+    }
+}
